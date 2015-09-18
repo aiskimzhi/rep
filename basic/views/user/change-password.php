@@ -11,6 +11,7 @@ $this->title = 'Password Change';
         <!-- Changing password -->
         <p>Change password</p>
 
+
         <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'oldPassword')->passwordInput() ?>
@@ -21,6 +22,10 @@ $this->title = 'Password Change';
             <?= Html::submitButton('Update password', ['class' => 'btn btn-primary']) ?>
         </div>
         <?php ActiveForm::end(); ?>
+
+
+
+
 
     </div>
 </div>

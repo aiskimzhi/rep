@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Query;
+
 
 /**
  * This is the model class for table "advert".
@@ -42,7 +44,7 @@ class Advert extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'region_id', 'city_id', 'category_id', 'subcategory_id', 'title', 'text', 'created_at', 'updated_at'], 'required'],
+            [['user_id', 'region_id', 'city_id', 'category_id', 'subcategory_id', 'title', 'text'], 'required'],
             [['user_id', 'region_id', 'city_id', 'category_id', 'subcategory_id', 'created_at', 'updated_at', 'views'], 'integer'],
             [['text'], 'string'],
             [['title'], 'string', 'max' => 255]
@@ -55,7 +57,6 @@ class Advert extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'user_id' => 'User ID',
             'region_id' => 'Region ID',
             'city_id' => 'City ID',
@@ -63,9 +64,6 @@ class Advert extends \yii\db\ActiveRecord
             'subcategory_id' => 'Subcategory ID',
             'title' => 'Title',
             'text' => 'Text',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'views' => 'Views',
         ];
     }
 
@@ -115,5 +113,21 @@ class Advert extends \yii\db\ActiveRecord
     public function getBookmarks()
     {
         return $this->hasMany(Bookmark::className(), ['advert_id' => 'id']);
+    }
+
+    public function getMyAdvert($id)
+    {
+        $query = new Query();
+        $array = $query->select(['title', 'updated_at', 'views'])
+            ->from(Advert::tableName())
+            ->where(['id' => $id])
+            ->all();
+
+        return $array;
+    }
+
+    public function create()
+    {
+
     }
 }

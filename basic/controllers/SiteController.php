@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\City;
+use app\models\Region;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -9,6 +11,11 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\SignupForm;
 use app\models\ContactForm;
+use app\models\SurveyResult;
+use app\models\Category;
+use app\models\Subcategory;
+use yii\helpers\Json;
+use yii\helpers\ArrayHelper;
 
 class SiteController extends Controller
 {
@@ -78,6 +85,7 @@ class SiteController extends Controller
                 }
             }
         }
+
         return $this->render('signup', [
             'model' => $model,
         ]);
@@ -107,4 +115,42 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionDrop()
+    {
+        $model = new SurveyResult();
+
+        $catList = ArrayHelper::map(Category::find()->asArray()->all(), 'id', 'name');
+        $subcatList = ArrayHelper::map(Subcategory::find()->asArray()->all(), 'id', 'name');
+
+        return $this->render('drop',
+            [
+                'model' => $model,
+                'catList' => $catList,
+                'subcatList' => $subcatList
+            ]);
+    }
+
+    public function actionGetSubcat($id) {
+
+        $countSubcats = Subcategory::find()
+            ->where(['category_id' => $id])
+            ->count();
+
+        $subcats = Subcategory::find()
+            ->where(['category_id' => $id])
+            ->orderBy('id ASC')
+            ->all();
+
+        if($countSubcats>0){
+            foreach($subcats as $subcat){
+                echo "<option value='".$subcat->id."'>".$subcat->name."</option>";
+            }
+        }
+        else{
+            echo "<option>-</option>";
+        }
+        echo Json::encode(['output'=>'', 'selected'=>'']);
+    }
+
 }

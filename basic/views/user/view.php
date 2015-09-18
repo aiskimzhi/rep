@@ -11,7 +11,6 @@ $this->title = 'My Data';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-view">
-
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= DetailView::widget([
@@ -37,6 +36,12 @@ $this->title = 'My Data';
                 'method' => 'post',
             ],
         ]) ?>
-    </p>
 
+        <a class="btn btn-warning" href="http://new.loc">Create Advert</a>
+
+        <a class="btn btn-info" href="http://new.loc">My Adverts</a>
+
+        <a class="btn btn-info" href="http://new.loc">My Bookmarks</a>
+
+    </p>
 </div>

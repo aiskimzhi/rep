@@ -62,8 +62,19 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+
+        <?= \app\components\AlertWidget::widget() ?>
         <?= $content ?>
     </div>
+
+    <?php
+    echo '<pre>';
+    echo '<b>$_POST: </b>';
+    print_r($_POST);
+    echo '<b>$_GET: </b>';
+    print_r($_GET);
+    ?>
+
 </div>
 
 <footer class="footer">

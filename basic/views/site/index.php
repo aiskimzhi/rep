@@ -14,6 +14,26 @@ $this->title = 'My Yii Application';
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>
 
+    <div>
+        <?php
+
+        date_default_timezone_set('Europe/Moscow');
+        $format = 'd M Y H:i';
+        $stamp = 1442229654;
+        //$date = date(DATE_RSS, time());
+        echo time();
+        echo '<br>';
+        echo date(DATE_RSS, time());
+        echo '<br>';
+        echo date($format, $stamp);
+        echo '<br>';
+        $t = time();
+        echo $t - $stamp;
+        echo '<br>';
+        echo date('t');
+        ?>
+    </div>
+
     <div class="body-content">
 
         <div class="row">

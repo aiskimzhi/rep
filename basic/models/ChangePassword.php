@@ -31,10 +31,14 @@ class ChangePassword extends Model
             if (Yii::$app->security->validatePassword($_POST['ChangePassword']['oldPassword'], $user->password)) {
                 $user->password = Yii::$app->security->generatePasswordHash($_POST['ChangePassword']['password']);
                 if ($user->save()) {
+                    //Yii::$app->session->setFlash('success', 'Your password changed successfully');
                     return true;
-                }
+                } //else {
+//                    Yii::$app->session->setFlash('error', 'Your password was not changed');
+//                }
             }
         }
+
         return null;
     }
 }

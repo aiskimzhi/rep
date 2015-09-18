@@ -2,12 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\AdvertUse;
 use Yii;
 use app\models\Advert;
 use app\models\AdvertCRUD;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\db\Query;
 
 /**
  * AdvertController implements the CRUD actions for Advert model.
@@ -117,5 +119,33 @@ class AdvertController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionMy()
+    {
+        $searchModel = new AdvertCRUD();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('my', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionAdv()
+    {
+        $model = new AdvertUse();
+
+
+        //var_dump($model->create());
+
+        echo '<br><br><br><br><br><br><br>';
+        var_dump($model->create());
+        //var_dump($model->load(Yii::$app->request->post()));
+
+
+        return $this->render('advert', [
+            'model' => $model,
+        ]);
     }
 }
