@@ -150,7 +150,7 @@ class SiteController extends Controller
         else{
             echo "<option>-</option>";
         }
-        echo Json::encode(['output'=>'', 'selected'=>'']);
+//        echo Json::encode(['output'=>'', 'selected'=>'']);
     }
 
 }

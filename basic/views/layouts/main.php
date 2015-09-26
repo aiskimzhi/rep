@@ -40,7 +40,7 @@ AppAsset::register($this);
             ['label' => 'Advert', 'url' => ['/advert/index']],
             //['label' => 'About', 'url' => ['/site/about']],
             //['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Account', 'url' => ['/user/view?id=' . Yii::$app->user->identity->getId()]],
+            //['label' => 'Account', 'url' => ['/user/view?id=' . Yii::$app->user->identity->getId()]],
             ['label' => 'User CRUD', 'url' => ['/user/index']],
             //['label' => 'Settings', 'url' => ['/user/change-account-settings']],
             ['label' => 'Sign Up', 'url' => ['/site/signup']],

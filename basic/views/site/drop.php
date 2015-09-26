@@ -11,6 +11,7 @@ echo $form->field($model, 'category_id')->dropDownList($catList,
     [
         'prompt'   => '- Choose a Category -',
         'onchange' => '
+        console.log($(this).val());
                         $.get( "' . Url::toRoute('site/get-subcat?id=') . '", { id: $(this).val() } )
                             .done(function( data ) {
                                 $( "#' . Html::getInputId($model, 'sub_cat_id') . '" ).html( data ).attr("disabled", false);
